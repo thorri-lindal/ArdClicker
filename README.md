@@ -8,8 +8,7 @@ Notast við einfalt *state change*[^2] til þess að athuga hvort það sé búi
 - Prentar út hvaða skipun þú ert á í *Serial Monitor*
 
 
-[^1]: Debouncing [Arduino útskýring](https://www.arduino.cc/en/Tutorial/BuiltInExamples/Debounce)
-[^2]: StateChange [Arduino útskýring](https://www.arduino.cc/en/Tutorial/BuiltInExamples/StateChangeDetection)
+
 
 ### Void setup
 ```
@@ -27,3 +26,8 @@ void setup()
   pinMode(LED_BUILTIN, OUTPUT);
 }
 ``` 
+*  *  *  *  *
+Footnotes
+
+[^1]: Debouncing [Arduino útskýring](https://www.arduino.cc/en/Tutorial/BuiltInExamples/Debounce)
+[^2]: StateChange [Arduino útskýring](https://www.arduino.cc/en/Tutorial/BuiltInExamples/StateChangeDetection)
