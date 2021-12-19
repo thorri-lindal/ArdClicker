@@ -7,7 +7,7 @@ Notast við einfalt *state change*[^2] til þess að athuga hvort það sé búi
 - Telur upp af 5 og fer aftur að 0
 - Prentar út hvaða skipun þú ert á í *Serial Monitor*
 
-## Todo
+### To-do
 - [ ] Færa kóðann yfir í sitt eigið library
 - [ ] brjóta niður *loops* í functions
 
