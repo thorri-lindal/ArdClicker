@@ -1,4 +1,4 @@
-# ArdClicker
+# ArdClicker ✋🔴
 Arduino Clicker tilraunarforrit til þess að geta notað einn takka til að keyra mismunandi skipanir á Arduino borði, búið til fyrir einfalda jólaseríu sem ég var að gera fyrir fjölskylduna, ég tók eftir því að það var ekki til kóði neinstaðar sem innihélt basic grunninn að því að nota takka sem multifucntional á Arduino bretti.
 
 ## Version 1.0
