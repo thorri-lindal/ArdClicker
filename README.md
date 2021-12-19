@@ -9,3 +9,4 @@ Notast við einfalt 'state change' til þess að athuga hvort það sé búið a
 
 
 [^1]: Debouncing [Arduino útskýring](https://www.arduino.cc/en/Tutorial/BuiltInExamples/Debounce)
+[^2]: StateChange [Arduino útskýring](https://www.arduino.cc/en/Tutorial/BuiltInExamples/StateChangeDetection)
