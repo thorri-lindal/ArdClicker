@@ -8,4 +8,4 @@ Notast við einfalt 'state change' til þess að athuga hvort það sé búið a
 - Prentar út hvaða skipun þú ert á í *Serial Monitor*
 
 
-[^1]: ButtonPress þarf mögulega að laga debouncing.
+[^1]: Debouncing [Arduino útskýring](https://www.arduino.cc/en/Tutorial/BuiltInExamples/Debounce)
