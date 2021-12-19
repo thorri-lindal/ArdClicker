@@ -7,25 +7,10 @@ Notast við einfalt *state change*[^2] til þess að athuga hvort það sé búi
 - Telur upp af 5 og fer aftur að 0
 - Prentar út hvaða skipun þú ert á í *Serial Monitor*
 
+## Todo
+- [ ] Færa kóðann yfir í sitt eigið library
+- [ ] brjóta niður *loops* í functions
 
-
-
-### Void setup
-```
-int buttonState = 0;
-
-int lastButtonState = 0;
-
-int buttonPushCounter = 0;
-
-void setup()
-{
-  pinMode(2, INPUT);
-  Serial.begin(9600);
-
-  pinMode(LED_BUILTIN, OUTPUT);
-}
-``` 
 *  *  *  *  *
 Footnotes
 
