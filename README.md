@@ -11,11 +11,19 @@ Notast við einfalt *state change*[^2] til þess að athuga hvort það sé búi
 [^1]: Debouncing [Arduino útskýring](https://www.arduino.cc/en/Tutorial/BuiltInExamples/Debounce)
 [^2]: StateChange [Arduino útskýring](https://www.arduino.cc/en/Tutorial/BuiltInExamples/StateChangeDetection)
 
-
+### Void setup
 ```
+int buttonState = 0;
+
+int lastButtonState = 0;
+
+int buttonPushCounter = 0;
+
+void setup()
 {
-  "firstName": "John",
-  "lastName": "Smith",
-  "age": 25
+  pinMode(2, INPUT);
+  Serial.begin(9600);
+
+  pinMode(LED_BUILTIN, OUTPUT);
 }
 ``` 
