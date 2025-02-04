@@ -1,3 +1,6 @@
+'''
+Example usage of the ArdClicker library.
+'''
 #include <ArdClicker.h>
 
 ArdClicker button(2);
