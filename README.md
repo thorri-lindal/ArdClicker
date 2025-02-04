@@ -1,4 +1,4 @@
-# ButtonActionsLibrary
+# ArdClicker ✋🔴
 
 ## Overview
 The ButtonActionsLibrary is an Arduino library designed to simplify the handling of button presses. It allows users to trigger multiple actions with a single button, making it ideal for projects that require versatile input handling.
