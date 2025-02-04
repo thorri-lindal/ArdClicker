@@ -1,18 +1,50 @@
-# ArdClicker ✋🔴
-Arduino Clicker tilraunarforrit til þess að geta notað einn takka til að keyra mismunandi skipanir á Arduino borði, búið til fyrir einfalda jólaseríu sem ég var að gera fyrir fjölskylduna, ég tók eftir því að það var ekki til kóði neinstaðar sem innihélt basic grunninn að því að nota takka sem multifucntional á Arduino bretti.
+# ButtonActionsLibrary
 
-## Version 1.0
-Notast við einfalt *state change*[^2] til þess að athuga hvort það sé búið að ýta á takkan eða ekki, þetta var gert í staðinn fyrir að nota lykkju til þess að athuga uppfærslur á takkanum (Hi, Lo state), bætti við *Debounce Delay* sem kemur í veg fyrir að borðið lesi noise eða of stutt button press.[^1] 
+## Overview
+The ButtonActionsLibrary is an Arduino library designed to simplify the handling of button presses. It allows users to trigger multiple actions with a single button, making it ideal for projects that require versatile input handling.
 
-- Telur upp af 5 og fer aftur að 0
-- Prentar út hvaða skipun þú ert á í *Serial Monitor*
+## Features
+- Easy setup and configuration of button actions.
+- Support for multiple actions triggered by a single button.
+- Simple API for adding and managing actions.
 
-### To-do
-- [ ] Færa kóðann yfir í sitt eigið library
-- [ ] brjóta niður *loops* í functions
+## Installation
+1. Download the ButtonActionsLibrary from the repository.
+2. Extract the contents to your Arduino libraries folder (usually located in `Documents/Arduino/libraries`).
+3. Restart the Arduino IDE to recognize the new library.
 
-*  *  *  *  *
-Footnotes
+## Usage
+To use the ButtonActionsLibrary in your project, include the main library header:
 
-[^1]: Debouncing [Arduino útskýring](https://www.arduino.cc/en/Tutorial/BuiltInExamples/Debounce)
-[^2]: StateChange [Arduino útskýring](https://www.arduino.cc/en/Tutorial/BuiltInExamples/StateChangeDetection)
+```cpp
+#include <ButtonActionsLibrary.h>
+```
+
+### Example
+Here is a simple example of how to use the library:
+
+```cpp
+#include <ButtonActionsLibrary.h>
+
+ButtonActions button;
+
+void setup() {
+  button.begin(2); // Initialize button on pin 2
+  button.addAction([]() { Serial.println("Action 1 triggered!"); });
+  button.addAction([]() { Serial.println("Action 2 triggered!"); });
+}
+
+void loop() {
+  button.update(); // Check button state and trigger actions
+}
+```
+
+## API Reference
+
+### ButtonActions Class
+- **void begin(int pin)**: Initializes the button on the specified pin.
+- **void update()**: Reads the button state and triggers the corresponding action.
+- **void addAction(void (*action)())**: Adds a new action to be triggered on button press.
+
+## License
+This library is released under the MIT License. See the LICENSE file for more details.
