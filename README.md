@@ -1,7 +1,8 @@
 # ArdClicker ✋🔴
 
 ## Overview
-The ButtonActionsLibrary is an Arduino library designed to simplify the handling of button presses. It allows users to trigger multiple actions with a single button, making it ideal for projects that require versatile input handling.
+
+ArdClicker is an Arduino library that allows you to handle button presses and execute different actions based on the number of times the button is pressed.
 
 ## Features
 - Easy setup and configuration of button actions.
@@ -9,33 +10,51 @@ The ButtonActionsLibrary is an Arduino library designed to simplify the handling
 - Simple API for adding and managing actions.
 
 ## Installation
-1. Download the ButtonActionsLibrary from the repository.
-2. Extract the contents to your Arduino libraries folder (usually located in `Documents/Arduino/libraries`).
-3. Restart the Arduino IDE to recognize the new library.
+
+1. Download the ArdClicker library.
+2. Unzip the library and place it in the `libraries` folder of your Arduino sketchbook directory.
+3. Restart the Arduino IDE.
 
 ## Usage
-To use the ButtonActionsLibrary in your project, include the main library header:
+
+### Include the Library
+
+Include the ArdClicker library in your sketch:
 
 ```cpp
-#include <ButtonActionsLibrary.h>
+#include <ArdClicker.h>
 ```
 
 ### Example
 Here is a simple example of how to use the library:
 
 ```cpp
-#include <ButtonActionsLibrary.h>
+#include <ArdClicker.h>
 
-ButtonActions button;
+ArdClicker button(2);
 
 void setup() {
-  button.begin(2); // Initialize button on pin 2
-  button.addAction([]() { Serial.println("Action 1 triggered!"); });
-  button.addAction([]() { Serial.println("Action 2 triggered!"); });
+    Serial.begin(9600);
+    button.begin();
+    button.addAction(action1);
+    button.addAction(action2);
+    button.addAction(action3);
 }
 
 void loop() {
-  button.update(); // Check button state and trigger actions
+    button.update();
+}
+
+void action1() {
+    Serial.println("Action 1 executed");
+}
+
+void action2() {
+    Serial.println("Action 2 executed");
+}
+
+void action3() {
+    Serial.println("Action 3 executed");
 }
 ```
 
