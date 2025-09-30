@@ -1,37 +1,96 @@
-#include "ButtonActions.h"
+// ButtonActions.h
+// Save this file as: ButtonActions.h
 
-ButtonActions::ButtonActions(int buttonPin) {
-    this->buttonPin = buttonPin;
-    buttonState = 0;
-    lastButtonState = 0;
-    buttonPushCounter = 0;
-}
+#ifndef BUTTONACTIONS_H
+#define BUTTONACTIONS_H
 
-void ButtonActions::begin() {
-    pinMode(buttonPin, INPUT);
-}
+#include <Arduino.h>
 
-void ButtonActions::update() {
-    buttonState = digitalRead(buttonPin);
+#define MAX_ACTIONS 20
+
+// Action types
+enum ActionType {
+    ON_PRESS,           // Triggered on button press
+    ON_RELEASE,         // Triggered on button release
+    ON_LONG_PRESS,      // Triggered when held for longPressTime
+    ON_DOUBLE_CLICK,    // Triggered on rapid successive presses
+    ON_CLICK,           // Triggered on press count (original behavior)
+    ON_HOLD,            // Continuously triggered while held
+    ON_TOGGLE           // Toggle state on each press
+};
+
+class ButtonActions {
+public:
+    ButtonActions(int buttonPin);
+    void begin();
+    void update();
     
-    if (buttonState != lastButtonState) {
-        if (buttonState == HIGH) {
-            buttonPushCounter++;
-            executeAction(buttonPushCounter);
-            delay(5); 
-        }
-        lastButtonState = buttonState;
-    }
-}
+    // Add action for specific press count (original functionality)
+    void addAction(int triggerCount, void (*action)());
+    
+    // Add action by type
+    void addPressAction(void (*action)());
+    void addReleaseAction(void (*action)());
+    void addLongPressAction(void (*action)(), unsigned long holdTime = 1000);
+    void addDoubleClickAction(void (*action)(), unsigned long maxInterval = 300);
+    void addHoldAction(void (*action)(), unsigned long interval = 100);
+    void addToggleAction(void (*action)());
+    
+    // Configuration
+    void setDebounceDelay(unsigned long ms);
+    void setLongPressTime(unsigned long ms);
+    void setDoubleClickInterval(unsigned long ms);
+    void setHoldInterval(unsigned long ms);
+    
+    // State queries
+    int getPressCount();
+    bool isPressed();
+    bool isLongPressed();
+    unsigned long getPressedDuration();
+    bool getToggleState();
+    
+    // Reset functions
+    void resetCounter();
+    void resetToggle();
 
-void ButtonActions::addAction(void (*action)()) {
-    if (buttonPushCounter < MAX_ACTIONS) {
-        actions[buttonPushCounter - 1] = action;
-    }
-}
+private:
+    int buttonPin;
+    int buttonState;
+    int lastButtonState;
+    int buttonPressCount;
+    
+    // Timing variables
+    unsigned long lastDebounceTime;
+    unsigned long debounceDelay;
+    unsigned long pressStartTime;
+    unsigned long lastReleaseTime;
+    unsigned long lastPressTime;
+    unsigned long longPressTime;
+    unsigned long doubleClickInterval;
+    unsigned long holdActionInterval;
+    unsigned long lastHoldActionTime;
+    
+    // State flags
+    bool longPressFired;
+    bool buttonCurrentlyPressed;
+    bool toggleState;
+    bool waitingForDoubleClick;
+    
+    struct Action {
+        void (*function)();
+        ActionType type;
+        int triggerCount;      // For ON_CLICK type
+        unsigned long timing;  // For timed actions (long press, double-click, hold)
+        bool active;
+    };
+    
+    Action actions[MAX_ACTIONS];
+    int actionCount;
+    
+    void executeActions(ActionType type);
+    void checkLongPress();
+    void checkDoubleClick();
+    void checkHold();
+};
 
-void ButtonActions::executeAction(int actionIndex) {
-    if (actionIndex > 0 && actionIndex <= MAX_ACTIONS && actions[actionIndex - 1] != nullptr) {
-        actions[actionIndex - 1]();
-    }
-}
+#endif // BUTTONACTIONS_H
