@@ -1,6 +1,3 @@
-// ButtonActions.h
-// Save this file as: ButtonActions.h
-
 #ifndef BUTTONACTIONS_H
 #define BUTTONACTIONS_H
 
