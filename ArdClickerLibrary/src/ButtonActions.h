@@ -1,6 +1,3 @@
-// ButtonActions.cpp
-// Save this file as: ButtonActions.cpp
-
 #include "ButtonActions.h"
 
 ButtonActions::ButtonActions(int buttonPin) {
